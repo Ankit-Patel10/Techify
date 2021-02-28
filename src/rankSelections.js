@@ -36,15 +36,15 @@ const RankSelections = () => {
     })
 
     return (
-        <div className="grid-container">
-            <div className="selection1">
+        <div>
+            <div className="bodyimage">
                 <CompanyCard disname={company1.name} disimage={company1.logo} disid={company1.id} winnerId={setWinnerId} > </CompanyCard>
             </div>
-            <div className="selection2">
+            <div className="bodyimage">
                 <CompanyCard disname={company2.name} disimage={company2.logo} disid={company2.id} winnerId={setWinnerId}> </CompanyCard>
             </div>
             <div className="drawButton">
-                <Button onClick={() => setWinnerId(0)}><img src={drawIcon} alt="Draw" width="236.4px" height="67.2px" /> </Button>
+                <Button onClick={() => setWinnerId(0)}><img className="drawButton" src={drawIcon} alt="Draw" width="236.4px" height="67.2px" /> </Button>
             </div>
         </div>
     )

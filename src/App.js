@@ -7,7 +7,7 @@ import rankUnclicked from './rankUnclicked.PNG';
 import lbClicked from './leaderboardClicked.PNG';
 import Button from '@material-ui/core/Button';
 import RankSelections from './rankSelections';
-
+import LeaderBoard from './leaderBoard';
 
 function App() {
 
@@ -23,12 +23,13 @@ function App() {
 
       {!leaderboard ? (
         <div>
-          <h1><Button onClick=""><img className="headimagerank" src={rankClicked} alt="RANK" width="200px" height="59px" /></Button><Button onClick={() => setLeaderboard(true)}><img className="headimageleader" src={lbUnclicked} alt="LEADERBOARD" width="200px" height="59px" /></Button></h1>
+          <h1><Button onClick=""><img className="headimagerank" src={rankClicked} alt="RANK" /></Button><Button onClick={() => setLeaderboard(true)}><img className="headimageleader" src={lbUnclicked} alt="LEADERBOARD" /></Button></h1>
           <RankSelections></RankSelections>
         </div>
       ) : (
           <div>
-            <h1><Button onClick={() => setLeaderboard(false)}><img className="headimagerank" src={rankUnclicked} alt="RANK" width="200px" height="59px" /></Button><Button onClick={() => setLeaderboard(true)}><img className="headimageleader" src={lbClicked} alt="LEADERBOARD" width="200px" height="59px" /></Button></h1>
+            <h1><Button onClick={() => setLeaderboard(false)}><img className="headimagerank" src={rankUnclicked} alt="RANK" /></Button><Button onClick={() => setLeaderboard(true)}><img className="headimageleader" src={lbClicked} alt="LEADERBOARD" /></Button></h1>
+            <LeaderBoard></LeaderBoard>
           </div>
         )}
 
