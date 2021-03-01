@@ -4,8 +4,8 @@ import Button from '@material-ui/core/Button';
 const CompanyCard = ({ disname, disimage, disid, winnerId }) => {
     return (
         <div>
-            <Button onClick={() => winnerId(disid)} > <img src={disimage} height="354.63px" width="388.09px" alt="companylogo" /></Button>
-            <p className="companyname1">{disname}</p>
+            <Button onClick={() => winnerId(disid)} > <img className="bodyimagegeneral" src={disimage} alt="companylogo" /></Button>
+            <p>{disname}</p>
         </div>
     )
 }

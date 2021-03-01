@@ -2,13 +2,6 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-
-
 .App-header {
   margin-top: 75px;
 }
@@ -16,37 +9,24 @@
 .headimagerank {
   width: 200px;
   height: 59px;
-  left: 509px;
-  top: 279px;
 }
 
 .headimageleader {
-width: 200px;
-height: 59px;
-left: 730px;
-top: 279px;
+  width: 200px;
+  height: 59px;
 }
 
-.App-link {
-  color: #61dafb;
+.bodyimage{
+display: inline-block;
+margin-left:auto;
+margin-right: auto;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr 0.8fr 1.2fr;
-  grid-template-rows: 1.8fr 0.2fr 1fr;
-  gap: 0px 0px;
-  grid-template-areas:
-    ". selection1 selection2 ."
-    "companyname1 companyname1 companyname2 companyname2"
-    "drawButton drawButton drawButton drawButton";
+.bodyimagegeneral{
+  height: 354.63px;
+  width: 388.09px;
 }
 
- .drawButton { 
-  grid-area: drawButton; 
-  margin-bottom: 200px;
+.drawButton { 
+  margin-top: 30px;
 }
- .companyname1 { grid-area: companyname1; }
- .companyname2 { grid-area: companyname2; }
- .selection1 { grid-area: selection1; }
- .selection2 { grid-area: selection2; }
