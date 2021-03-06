@@ -1,12 +1,19 @@
 import React from 'react'
 import Button from '@material-ui/core/Button';
 
-const CompanyCard = ({ disname, disimage, disid, winnerId }) => {
+const CompanyCard = ({ company, onSelected }) => {
     return (
-        <div>
-            <Button onClick={() => winnerId(disid)} > <img className="bodyimagegeneral" src={disimage} alt="companylogo" /></Button>
-            <p>{disname}</p>
-        </div>
+        company ? (
+            <div>
+                <Button onClick={() => onSelected(company.id)} > <img className="bodyimagegeneral" src={company.logo} alt="companylogo" /></Button>
+                <p>{company.name}</p>
+            </div>
+        )
+            : (
+                <div>
+                    <p>loading!</p>
+                </div>
+            )
     )
 }
 
