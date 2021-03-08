@@ -23,30 +23,18 @@ var dispatchForCode = function (event) {
 // 1. what it takes as input (parameters/arguments)
 // 2. what it outputs (return value)
 const RankSelections = () => {
-    // const res = fetch('https://rankit-backend.herokuapp.com/company/match')
-    // const company1 = res[0]
-    // const company2 = res[1]
-    // let draw = false
-
-    const [company1, setCompany1] = useState();
-    const [company2, setCompany2] = useState();
-
-
-    // useEffect(()=>{fetchMatch()}, []);
-
+    const [companies, setCompanies] = useState([null, null]);
 
     const fetchMatch = async () => {
         const res = await fetch('https://rankit-backend.herokuapp.com/company/match');
         const data = await res.json();
-        setCompany1(data[0]);
-        setCompany2(data[1]);
+        setCompanies([{...data[0], status: null}, {...data[1], status: null}]);
     };
 
     useEffect(fetchMatch, []);
 
     const madeDecision = (winnerId) => {
-        console.log(winnerId)
-        if (!company1 || !company2) {
+        if (!companies[0] || !companies[1]) {
             return;
         }
         // gets called every time the user picks a winner or clicks draw   
@@ -54,17 +42,20 @@ const RankSelections = () => {
         if (winnerId) {
             // figure out loserId
             let loserId;
-            if (winnerId === company1.id) {
-                loserId = company2.id;
+            if (winnerId === companies[0].id) {
+                loserId = companies[1].id;
+                setCompanies([{...companies[0], status: "won"}, {...companies[1], status: "lost"}]);
             } else {
-                loserId = company1.id;
+                loserId = companies[0].id;
+                setCompanies([{...companies[0], status: "lost"}, {...companies[1], status: "won"}]);
             }
 
             // tell server who won and who lost
             payload = { "winnerId": winnerId, "loserId": loserId, "draw": false };
         } else {
             // tell server that it's a draw
-            payload = { "winnerId": company1.id, "loserId": company2.id, "draw": true };
+            payload = { "winnerId": companies[0].id, "loserId": companies[1].id, "draw": true };
+            setCompanies([{...companies[0], status: "draw"}, {...companies[1], status: "draw"}]);
         }
 
         fetch('https://rankit-backend.herokuapp.com/company/match', {
@@ -74,36 +65,36 @@ const RankSelections = () => {
             },
             body: JSON.stringify(payload)
         });
-
-        // get new match (i.e. new set of companies)
-        fetchMatch();
     };
 
     useKeyPress((event) => {
         const code = dispatchForCode(event);
         if (code === "ArrowLeft") {
-            if (company1) {
-                madeDecision(company1.id);
+            if (companies[0]) {
+                madeDecision(companies[0].id);
             }
-        }
-        else if (code === "ArrowRight") {
-            if (company2) {
-                madeDecision(company2.id);
+        } else if (code === "ArrowRight") {
+            if (companies[1]) {
+                madeDecision(companies[1].id);
             }
-        }
-        else if (code === " ") {
+        } else if (code === " ") {
             madeDecision(null);
         }
-    })
+    });
 
+    const onAnimationEnd = ({ animationName }, company) => {
+        if (animationName != "stay") return;
+
+        fetchMatch();
+    };
 
     return (
-        <div>
+        <div className="companies-container">
             <div className="bodyimage">
-                <CompanyCard company={company1} onSelected={madeDecision}> </CompanyCard>
+                <CompanyCard side="left" company={companies[0]} onSelected={madeDecision} onAnimationEnd={(event) => onAnimationEnd(event, companies[0])}> </CompanyCard>
             </div>
             <div className="bodyimage">
-                <CompanyCard company={company2} onSelected={madeDecision}> </CompanyCard>
+                <CompanyCard side="right" company={companies[1]} onSelected={madeDecision} onAnimationEnd={(event) => onAnimationEnd(event, companies[1])}> </CompanyCard>
             </div>
             <div className="drawButton">
                 <Button onClick={() => madeDecision()}><img className="drawButton" src={drawIcon} alt="Draw" width="236.4px" height="67.2px" /> </Button>
