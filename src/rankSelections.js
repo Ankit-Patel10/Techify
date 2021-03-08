@@ -39,7 +39,7 @@ const RankSelections = () => {
         }
         // gets called every time the user picks a winner or clicks draw   
         let payload;
-        if (winnerId) {
+        if (winnerId != null) {
             // figure out loserId
             let loserId;
             if (winnerId === companies[0].id) {
