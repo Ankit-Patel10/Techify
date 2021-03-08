@@ -5,17 +5,17 @@ import Button from '@material-ui/core/Button';
 import { useState, useEffect } from "react";
 import { useKeyPress } from './keypress'
 
-var dispatchForCode = function(event) {
+var dispatchForCode = function (event) {
     var code;
-  
+
     if (event.key !== undefined) {
-      code = event.key;
+        code = event.key;
     } else if (event.keyIdentifier !== undefined) {
-      code = event.keyIdentifier;
+        code = event.keyIdentifier;
     } else if (event.keyCode !== undefined) {
-      code = event.keyCode;
+        code = event.keyCode;
     }
-  
+
     return code;
 };
 
@@ -45,10 +45,10 @@ const RankSelections = () => {
     useEffect(fetchMatch, []);
 
     const madeDecision = (winnerId) => {
-        console.log(winnerId) 
+        console.log(winnerId)
         if (!company1 || !company2) {
             return;
-        } 
+        }
         // gets called every time the user picks a winner or clicks draw   
         let payload;
         if (winnerId) {
@@ -80,7 +80,6 @@ const RankSelections = () => {
     };
 
     useKeyPress((event) => {
-        console.log(event.which)
         const code = dispatchForCode(event);
         if (code === "ArrowLeft") {
             if (company1) {
