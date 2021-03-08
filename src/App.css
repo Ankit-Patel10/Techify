@@ -225,15 +225,18 @@ input:focus, textarea:focus, select:focus{
 
 .leaderboardinter {
   display: grid;
-  grid-template-columns: 1.2fr 2fr 1.2fr;
+  grid-template-columns: 1.5fr 2fr 1.5fr;
   grid-template-rows: 0.1fr 2.4fr;
   gap: 0px 0px;
   grid-template-areas:
     ". SearchBar ."
     ". rankSlots .";
 }
-.SearchBar { grid-area: SearchBar; }
+.SearchBar { 
+  grid-area: SearchBar;
+  margin: auto auto;
+}
 .RankSlots { 
-  padding-left: 5%;
   grid-area: rankSlots;
+  
  }
