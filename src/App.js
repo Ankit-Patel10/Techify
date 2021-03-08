@@ -10,10 +10,7 @@ import RankSelections from './rankSelections';
 import LeaderBoard from './leaderBoard';
 
 function App() {
-
-
   const [leaderboard, setLeaderboard] = useState(false);
-
 
   return (
     <div className="App">
@@ -22,7 +19,7 @@ function App() {
       </header>
 
       {!leaderboard ? (
-        <div>
+        <div className="rank-page-container">
           <h1><Button><img className="headimagerank" src={rankClicked} alt="RANK" /></Button><Button onClick={() => setLeaderboard(true)}><img className="headimageleader" src={lbUnclicked} alt="LEADERBOARD" /></Button></h1>
           <RankSelections></RankSelections>
         </div>
