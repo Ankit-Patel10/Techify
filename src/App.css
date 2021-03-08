@@ -1,9 +1,11 @@
 .App {
+  height: 100vh;
   text-align: center;
+  overflow: hidden;
 }
 
 .App-header {
-  margin-top: 75px;
+  padding-top: 75px;
 }
 
 .headimagerank {
@@ -29,4 +31,109 @@ margin-right: auto;
 
 .drawButton { 
   margin-top: 30px;
+}
+
+@keyframes stay { }
+
+@keyframes lost-right {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(90deg);
+  }
+}
+
+@keyframes lost-left {
+  from {
+    transform: rotate(0);
+  }
+
+  to {
+    transform: rotate(-90deg);
+  }
+}
+
+.company[data-lost="true"][data-side="left"] {
+  transform-origin: 100% 100vh;
+  animation-name: lost-left;
+}
+
+.company[data-lost="true"][data-side="right"] {
+  transform-origin: 0 100vh;
+  animation-name: lost-right;
+}
+
+.company[data-lost="true"] {
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes won-left {
+  from {
+    transform: translate(0);
+  }
+
+  to {
+    transform: translate(50%);
+  }
+}
+
+@keyframes won-right {
+  from {
+    transform: translate(0);
+  }
+
+  to {
+    transform: translate(-50%);
+  }
+}
+
+.company[data-won="true"][data-side="left"] {
+  transform-origin: 100% 100vh;
+  animation-name: won-left, stay;
+}
+
+.company[data-won="true"][data-side="right"] {
+  transform-origin: 0 100vh;
+  animation-name: won-right, stay;
+}
+
+.company[data-won="true"] {
+  animation-duration: 0.7s, 0.5s;
+  animation-delay: 0s, 0.7s;
+  animation-iteration-count: 1, 1;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes draw {
+  from {
+    opacity: 100%;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.company[data-draw="true"][data-side="left"] {
+  animation-name: draw, stay;
+  animation-duration: 0.7s, 0.5s;
+  animation-delay: 0s, 0.7s;
+  animation-iteration-count: 1, 1;
+}
+
+.company[data-draw="true"][data-side="right"] {
+  animation-name: draw;
+  animation-duration: 0.7s;
+  animation-iteration-count: 1;
+}
+
+.company[data-draw="true"] {
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
 }

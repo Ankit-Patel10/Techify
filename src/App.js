@@ -23,7 +23,7 @@ function App() {
 
       {!leaderboard ? (
         <div>
-          <h1><Button onClick=""><img className="headimagerank" src={rankClicked} alt="RANK" /></Button><Button onClick={() => setLeaderboard(true)}><img className="headimageleader" src={lbUnclicked} alt="LEADERBOARD" /></Button></h1>
+          <h1><Button><img className="headimagerank" src={rankClicked} alt="RANK" /></Button><Button onClick={() => setLeaderboard(true)}><img className="headimageleader" src={lbUnclicked} alt="LEADERBOARD" /></Button></h1>
           <RankSelections></RankSelections>
         </div>
       ) : (
